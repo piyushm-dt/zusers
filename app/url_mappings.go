@@ -10,8 +10,8 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"github.com/gorilla/mux"
-	"github.com/piyushm-dt/zusers/src/db"
-	"github.com/piyushm-dt/zusers/src/domain/employee"
+	"github.com/piyushm-dt/zusers/db"
+	"github.com/piyushm-dt/zusers/domain/employee"
 )
 
 var collection = db.ConnectDB()

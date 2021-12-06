@@ -4,9 +4,11 @@ FROM golang:1.12
 RUN apt update && apt install ca-certificates libgnutls30 -y
 
 WORKDIR E:/Go/zusers
-COPY ./src .
+COPY ./ .
 
 RUN go get -d -v
 RUN go build -v
+
+EXPOSE 12345
 
 CMD ["./zusers"]

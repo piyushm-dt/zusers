@@ -1,6 +1,7 @@
 package app
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -11,6 +12,8 @@ var (
 )
 
 func StartApplication(){
+
+	fmt.Println("start application!")
 	
 	mapUrls()
 	srv := &http.Server{

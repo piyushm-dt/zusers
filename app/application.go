@@ -18,11 +18,12 @@ func StartApplication(){
 	mapUrls()
 	srv := &http.Server{
 		Handler: router,
-		Addr: "localhost:8000",
+		Addr: "localhost:8080",
 	}
 
 	if err := srv.ListenAndServe(); err != nil {
 		panic(err)
 	}
+
 
 }

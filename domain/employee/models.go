@@ -7,6 +7,7 @@ type Employee struct {
 	FirstName string `json:"firstname,omitempty" bson:"firstname,omitempty"`
 	LastName string `json:"lastname,omitempty" bson:"lastname,omitempty"`
 	Email string `json:"email,omitempty" bson:"email,omitempty"`
+	Password string `json:"password,omitempty" bson:"password,omitempty"`
 	DOJ string `json:"date_of_joining" bson:"date_of_joining"`
 	Skills []string `json:"skills" bson:"skills"`
 	Designation string `json:"designation" bson:"designation"`

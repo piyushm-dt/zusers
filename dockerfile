@@ -1,14 +1,14 @@
-#get a base image
-FROM golang:1.12
+# syntax=docker/dockerfile:1
+FROM golang:1.12.13
 
 RUN apt update && apt install ca-certificates libgnutls30 -y
 
-WORKDIR E:/Go/zusers
-COPY ./ .
+WORKDIR /app
 
-RUN go get -d -v
-RUN go build -v
+COPY . ./
 
-EXPOSE 12345
+RUN go build -o /zusers
 
-CMD ["./zusers"]
+EXPOSE 8080
+
+CMD [ "/zusers" ]

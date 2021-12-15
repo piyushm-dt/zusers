@@ -34,6 +34,7 @@ func mapUrls() {
 
 	router.HandleFunc("/", ping).Methods("GET")
 	router.HandleFunc("/api/signin", SignIn).Methods("POST")
+	router.HandleFunc("/api/signup", SignUp).Methods("POST")
 
 	//router.HandleFunc("/api/employees", createEmployee).Methods("POST")
 	router.HandleFunc("/api/employees", IsAuthorized(CreateRoleIndex)).Methods("POST")
@@ -281,6 +282,34 @@ func SignIn(w http.ResponseWriter, r *http.Request){
 	token.TokenString = validToken
 
 	json.NewEncoder(w).Encode(token)
+}
+
+func SignUp(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	var authdetails auth.Authentication
+	var emp employee.Employee
+	err := json.NewDecoder(r.Body).Decode(&authdetails)
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+
+	_ = collection.FindOne(context.TODO(), bson.M{"email": authdetails.Email}).Decode(&emp)
+	if emp.Email != "" {
+		json.NewEncoder(w).Encode("email already in use")
+		return
+	}
+
+	emp.Password, _ = GeneratehashPassword(emp.Password)
+
+	result, err := collection.InsertOne(context.TODO(), emp)
+	if err != nil {
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+
+	json.NewEncoder(w).Encode(result)
 }
 
 func GenerateJWT(email, designation string) (string, error) {

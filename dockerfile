@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM golang:1.12.0
+FROM golang:1.12.13
 
 RUN apt update && apt install ca-certificates libgnutls30 -y
 
@@ -13,6 +13,7 @@ RUN go mod download
 COPY . .
 
 EXPOSE 8080
+EXPOSE 8081
 
 RUN go build
 

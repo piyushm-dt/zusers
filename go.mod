@@ -2,7 +2,7 @@ module github.com/piyushm-dt/zusers
 
 go 1.17
 
-replace github.com/piyushm-dt/zusers => E:/Go/zusers
+// replace github.com/piyushm-dt/zusers => E:/Go/zusers
 
 require go.mongodb.org/mongo-driver v1.8.0
 
